@@ -34,5 +34,11 @@
                         <h1> Opps!! No hay contenido </h1>
                     </div>
                 @endforelse
+
+                @if(count($messages))
+                <div class="mt-2" mx-auto>
+                 {{$messages->links('pagination::bootstrap-4')}}
+                </div>
+                @endif
             </div>
 @endsection            
