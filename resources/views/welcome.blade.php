@@ -11,9 +11,14 @@
             </nav>
         </div>
         <div class="row">
-            <form class="form-group" action="messages/create" method="post">
+            <form class="form-group @if($errors->has('message')) has-dange @endif " action="messages/create" method="post">
                 @csrf
                 <input type="text" name="message" class="form-control" placeholder="Que estas Pensando?">
+                @if($errors->has('message'))
+                    @foreach($errors as $error)
+                    <div class="form-control-feedback">{{$error}}</div>
+                    @endforeach
+                @endif
             </form>
         </div>
         <div class="row">
