@@ -10,10 +10,15 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+Auth::routes();
 
 Route::get('/','PagesController@home');
 Route::get('messages/{message}','MessagesController@show');
 Route::post('messages/create','MessagesController@create')->middleware('auth');
+Route::get('/{username}','UsersController@show');
+Route::get('/{username}/follows','UsersController@follows');
+Route::post('/{username}/follow','UsersController@follow');
 
-Auth::routes();
+
+
 

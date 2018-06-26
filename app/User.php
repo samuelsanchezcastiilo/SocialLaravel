@@ -17,7 +17,7 @@ class User extends Authenticatable
     protected $fillable = [
         'name','username','email','avatar', 'password',
     ];
-
+              
     /**
      * The attributes that should be hidden for arrays.
      *
@@ -26,4 +26,17 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function messages()
+    {
+        return $this->hasMany(Message::class)->orderBy('created_at','desc');
+    }
+    public function follows()
+    {
+        return $this->belongsToMany(User::class,'followers','user_id','followed_id');
+    }
+    public function followers()
+    {
+        return $this->belongsToMany(User::class,'followers','followed_id','user_id');
+    }
 }
